@@ -1,0 +1,66 @@
+generated: '2026-08-23'
+method: probed
+source: https://api.kymeta.io/status
+note: >-
+  Kymeta publishes no versioning policy, no deprecation policy and no SLA. What it does publish,
+  unauthenticated, is a live build-version roll-up across the Kymeta Connect platform — recorded
+  here verbatim because it is the only lifecycle signal the company exposes to the public.
+versioning:
+  scheme: build-number
+  scheme_evidence: >-
+    https://api.kymeta.io/version returns {"Version":"1.0.0.91","FileVersion":"1.0.0.91"} — a
+    four-part assembly build number, not a consumer-facing API version. No version appears in a
+    URI path, header or media type on any probed endpoint.
+  current: 1.0.0.91
+  docs: null
+  uri_versioning: false
+  header_versioning_observed: false
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  sunset_header_note: >-
+    Untestable — no deprecatable public endpoint exists to observe RFC 8594 Sunset or Deprecation
+    headers on.
+sla:
+  url: null
+  uptime_target: null
+status_page:
+  human_page: null
+  machine_endpoint: https://api.kymeta.io/status
+  machine_endpoint_note: >-
+    This is a JSON health roll-up, not a public status page. It reports a per-service HTTP code
+    and build version but carries no incident history, no subscription and no uptime record, so
+    no StatusPage pointer is emitted from it.
+change_log:
+  url: https://www.kymetacorp.com/support/product-and-software-updates
+  public: false
+  note: >-
+    The Product and Software Updates page is publicly reachable (HTTP 200) but publishes no dated
+    entries. It is a subscription form for Osprey u8 software-release and product notices, and the
+    page states "You must have a Kymeta Access Portal account to access the notices." Additional
+    Hawk u8, Peregrine u8 and Goshawk u8 lists are marked "Coming Soon". No ChangeLog pointer is
+    emitted because no changelog content is published.
+services_observed:
+  source: https://api.kymeta.io/status
+  fetched: '2026-08-23'
+  note: >-
+    Verbatim from Kymeta's own unauthenticated status roll-up. Each service reported HTTP 200 at
+    fetch time. These are service names Kymeta publishes about itself, not inferred endpoints — no
+    route, method or schema is claimed for any of them.
+  services:
+    - {name: accounts, http: 200, version: 1.0.0.10}
+    - {name: activityLogger, http: 200, version: 1.0.0.10}
+    - {name: enterpriseBroker, http: 200, version: 1.0.0.50}
+    - {name: fileStorage, http: 200, version: 1.0.0.25}
+    - {name: logicApp, http: 200, version: 1.0.0.30}
+    - {name: remoteMetrics, http: 200, version: 1.0.45.18}
+    - {name: scheduler, http: 200, version: 1.0.0.12}
+    - {name: subscriptions, http: 200, version: 1.0.0.13}
+    - {name: users, http: 200, version: 1.0.0.13}
+    - {name: devices, http: 200, version: 1.0.0.0}
+deprecated_operations: []
+x-evidence:
+  - {url: 'https://api.kymeta.io/health', http_status: 200, content_type: text/plain, body: Healthy}
+  - {url: 'https://api.kymeta.io/version', http_status: 200, content_type: application/json}
+  - {url: 'https://api.kymeta.io/status', http_status: 200, content_type: application/json}
+  - {url: 'https://www.kymetacorp.com/support/product-and-software-updates', http_status: 200}

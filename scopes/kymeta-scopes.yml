@@ -1,0 +1,73 @@
+generated: '2026-08-23'
+method: probed
+source: https://access.kymeta.io/.well-known/openid-configuration
+note: >-
+  The eleven scopes below are published verbatim in scopes_supported by Kymeta's own identity
+  provider. Kymeta publishes no scope/permission reference page, so the descriptions are limited
+  to what can be stated from first-party evidence — the scope name itself and, where corroborated,
+  the matching service name in the api.kymeta.io /status roll-up. Nothing here is inferred beyond
+  that; scopes with no corroborating evidence are marked description: null rather than guessed.
+docs: null
+docs_note: No public scopes or permissions reference is published by Kymeta.
+schemes:
+  - name: KymetaAccessOIDC
+    source: well-known/kymeta-access-openid-configuration.json
+    issuer: https://access.kymeta.io
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://access.kymeta.io/connect/authorize
+        tokenUrl: https://access.kymeta.io/connect/token
+      - flow: clientCredentials
+        tokenUrl: https://access.kymeta.io/connect/token
+      - flow: deviceCode
+        deviceAuthorizationUrl: https://access.kymeta.io/connect/deviceauthorization
+        tokenUrl: https://access.kymeta.io/connect/token
+scopes:
+  - scope: openid
+    description: Standard OpenID Connect scope; requests an ID token.
+    standard: oidc-core
+    sources: [well-known/kymeta-access-openid-configuration.json]
+  - scope: profile
+    description: Standard OpenID Connect scope; profile claims.
+    standard: oidc-core
+    sources: [well-known/kymeta-access-openid-configuration.json]
+  - scope: email
+    description: Standard OpenID Connect scope; email and email_verified claims.
+    standard: oidc-core
+    sources: [well-known/kymeta-access-openid-configuration.json]
+  - scope: offline_access
+    description: Standard OpenID Connect scope; issues a refresh token.
+    standard: oidc-core
+    sources: [well-known/kymeta-access-openid-configuration.json]
+  - scope: partners-api
+    description: null
+    description_note: >-
+      Named partner API scope. This is the clearest published evidence that Kymeta operates a
+      partner-facing API, but no reference documents what it grants.
+    sources: [well-known/kymeta-access-openid-configuration.json]
+  - scope: enterprisebroker
+    description: null
+    description_note: >-
+      Corresponds to the enterpriseBroker service reported by https://api.kymeta.io/status.
+    sources: [well-known/kymeta-access-openid-configuration.json, 'probe:https://api.kymeta.io/status']
+  - scope: ksn
+    description: null
+    sources: [well-known/kymeta-access-openid-configuration.json]
+  - scope: kpp
+    description: null
+    sources: [well-known/kymeta-access-openid-configuration.json]
+  - scope: grapevine
+    description: null
+    description_note: >-
+      Corresponds to https://grapevine.kymeta.io, which redirects into the access.kymeta.io
+      sign-in flow (observed 200 after redirect to login.microsoftonline.com with
+      redirect_uri https://access.kymeta.io/signin-microsoft).
+    sources: [well-known/kymeta-access-openid-configuration.json, 'probe:https://grapevine.kymeta.io/']
+  - scope: live-stream
+    description: null
+    sources: [well-known/kymeta-access-openid-configuration.json]
+  - scope: absorblms
+    description: null
+    description_note: >-
+      Federation scope for the Absorb LMS tenant at academy.kymeta.io (vendor-operated).
+    sources: [well-known/kymeta-access-openid-configuration.json]

@@ -1,0 +1,93 @@
+generated: '2026-08-23'
+method: probed
+source: https://access.kymeta.io/.well-known/openid-configuration
+note: >-
+  Every assertion below is read from a document Kymeta serves. Where a standard could not be
+  tested because Kymeta publishes no contract, conforms is null (untestable) rather than false —
+  false would assert a negative finding this pass did not earn.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      RFC 6749 authorization server at https://access.kymeta.io — /connect/authorize,
+      /connect/token, grant_types_supported includes authorization_code, client_credentials,
+      refresh_token and implicit.
+  - id: oidc-discovery
+    conforms: true
+    evidence: >-
+      OpenID Connect Discovery 1.0 document served at
+      https://access.kymeta.io/.well-known/openid-configuration (HTTP 200, application/json),
+      with issuer, jwks_uri, userinfo_endpoint and end_session_endpoint.
+  - id: oidc-core
+    conforms: true
+    evidence: 'id_token_signing_alg_values_supported: [RS256]; subject_types_supported: [public]; standard claims set published.'
+  - id: rfc7636-pkce
+    conforms: true
+    evidence: 'code_challenge_methods_supported: [plain, S256].'
+    deviation: >-
+      "plain" is still advertised alongside S256. RFC 7636 §7.2 and OAuth 2.1 require S256 for
+      clients capable of it; advertising plain leaves a downgrade option available.
+  - id: rfc7009-token-revocation
+    conforms: true
+    evidence: 'revocation_endpoint: https://access.kymeta.io/connect/revocation.'
+  - id: rfc7662-token-introspection
+    conforms: true
+    evidence: 'introspection_endpoint: https://access.kymeta.io/connect/introspect.'
+  - id: rfc8628-device-authorization-grant
+    conforms: true
+    evidence: >-
+      device_authorization_endpoint published and
+      urn:ietf:params:oauth:grant-type:device_code listed in grant_types_supported.
+  - id: oidc-frontchannel-logout
+    conforms: true
+    evidence: 'frontchannel_logout_supported: true; frontchannel_logout_session_supported: true.'
+  - id: oidc-backchannel-logout
+    conforms: true
+    evidence: 'backchannel_logout_supported: true; backchannel_logout_session_supported: true.'
+  - id: rfc8414-oauth-authorization-server-metadata
+    conforms: false
+    evidence: >-
+      https://access.kymeta.io/.well-known/oauth-authorization-server returned HTTP 404. Only the
+      OIDC discovery path is served, so a pure OAuth 2.0 client following RFC 8414 finds nothing.
+  - id: rfc9728-oauth-protected-resource-metadata
+    conforms: false
+    evidence: >-
+      https://api.kymeta.io/.well-known/oauth-protected-resource returned HTTP 404, so the
+      resource server does not advertise its authorization server.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: >-
+      /.well-known/security.txt returned 404 on www.kymetacorp.com, api.kymeta.io,
+      access.kymeta.io, academy.kymeta.io and portal.kymeta.io.
+  - id: rfc7591-dynamic-client-registration
+    conforms: false
+    evidence: >-
+      No registration_endpoint in the access.kymeta.io discovery document. (The vendor-operated
+      academy.kymeta.io Absorb tenant does publish one; that is Absorb's, not Kymeta's.)
+  - id: fapi
+    conforms: false
+    evidence: >-
+      tls_client_certificate_bound_access_tokens and require_pushed_authorization_requests are
+      both absent from the access.kymeta.io metadata, and implicit flow is still enabled.
+  - id: openapi
+    conforms: false
+    evidence: >-
+      No OpenAPI or Swagger document found at any probed path on api.kymeta.io,
+      www.kymetacorp.com, portal.kymeta.io, access.kymeta.io or academy.kymeta.io.
+  - id: rfc9457-problem-details
+    conforms: null
+    evidence: >-
+      Untestable — every functional endpoint on api.kymeta.io is gated, and the three
+      unauthenticated endpoints (/health, /version, /status) return only success payloads.
+  - id: asyncapi
+    conforms: null
+    evidence: Untestable — Kymeta publishes no event, streaming or webhook surface.
+domain_standards:
+  note: >-
+    Satellite communications has no adopted API-layer interoperability standard comparable to
+    FHIR, SCIM or OpenRTB. DVB-S2X, DVB-RCS2 and the Ku/Ka air interfaces Kymeta's terminals
+    speak are physical- and link-layer standards, not machine-readable API contracts, so nothing
+    in this market is claimable here. Recorded explicitly so a future pass does not read the
+    empty slot as an unchecked one. This is a reward-only check — Kymeta is not penalised for it.
+  candidates_checked: [scim2, odata, openrtb, sparkplug, activitypub, oai-pmh, hl7v2, x12, iso20022]
+  matched: []

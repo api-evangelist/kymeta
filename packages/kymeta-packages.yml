@@ -1,0 +1,26 @@
+generated: '2026-08-23'
+method: searched
+source: npm, PyPI, RubyGems, crates.io, pkg.go.dev, NuGet and the kymetacorp.com link graph
+package_count: 0
+official_sdk_count: 0
+packages: []
+note: >-
+  Kymeta publishes no client libraries in any public registry, and links to none from its own
+  site. No Packages or SDKs pointer is wired into apis.yml — a manifest recording zero packages is
+  evidence of an absence, not a distribution surface. The only first-party software Kymeta
+  distributes to end users is the Kymeta Access application, shipped through consumer app stores
+  rather than a developer registry, and it is a terminal-management app rather than an SDK.
+searched:
+  - {registry: npm, query: kymeta, result: '0 results (registry.npmjs.org/-/v1/search)'}
+  - {registry: pypi, query: 'kymeta, kymeta-sdk, pykymeta', result: '404 on all three'}
+  - {registry: rubygems, query: kymeta, result: '404'}
+  - {registry: crates.io, query: kymeta, result: '0 crates'}
+  - {registry: github, query: 'orgs kymeta + kymetacorp', result: 'both exist, both have 0 public repositories'}
+end_user_applications:
+  note: >-
+    Recorded for completeness. These are consumer distributions of the Kymeta Access terminal
+    app, not developer packages, and none of them is counted above.
+  apps:
+    - {platform: ios, url: 'https://apps.apple.com/us/app/kymeta-access/id1536037643'}
+    - {platform: android, url: 'https://play.google.com/store/apps/details?id=com.kymetacorp.app'}
+    - {platform: windows, url: 'https://apps.microsoft.com/store/detail/kymeta-access/9N6FVQ94RQ1F'}

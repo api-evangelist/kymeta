@@ -1,0 +1,24 @@
+generated: '2026-08-23'
+method: searched
+status: none
+source: >-
+  Searched kymetacorp.com, the Kymeta Access Hub hosts, npm, PyPI, RubyGems, crates.io and GitHub
+  for a Kymeta MCP server. Nothing exists.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: searched
+tools: []
+note: >-
+  Kymeta ships no MCP server, hosted or local. No candidate tool list is derived either: there is
+  no OpenAPI in this repo to derive one from, and deriving tools from the ten service names in
+  https://api.kymeta.io/status would invent operations, parameters and schemas that Kymeta has
+  never published. mode is none and no MCPServer pointer is wired into apis.yml.
+searched:
+  - {where: 'https://www.kymetacorp.com/ (full link graph)', result: no MCP or agent surface}
+  - {where: 'npm registry search "kymeta"', result: '0 packages'}
+  - {where: 'PyPI kymeta / kymeta-sdk / pykymeta', result: '404'}
+  - {where: 'GitHub org kymeta + kymetacorp', result: '0 public repositories'}

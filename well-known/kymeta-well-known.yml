@@ -1,0 +1,117 @@
+generated: '2026-08-23'
+method: probed
+source: live probe of every Kymeta-controlled host found in apis.yml and via the Access Hub
+note: >-
+  Kymeta serves two real OpenID Connect discovery surfaces from its own kymeta.io hosts.
+  access.kymeta.io is Kymeta's first-party identity provider (issuer https://access.kymeta.io,
+  Duende/IdentityServer-shaped /connect/* endpoints) and is the authorization server in front of
+  the Kymeta Connect platform API at api.kymeta.io. academy.kymeta.io is an Absorb LMS tenant
+  operating under a Kymeta hostname — the documents are genuinely served by Kymeta's domain, but
+  the endpoints (/api/v6/idam/*) and the absorb:learner / absorb:admin scopes are the vendor's
+  product, so it is recorded here as vendor-operated and is NOT treated as a Kymeta API contract.
+hit_count: 5
+hosts:
+  - host: https://access.kymeta.io
+    operator: kymeta
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: kymeta-access-openid-configuration.json
+      - path: /.well-known/openid-configuration/jwks
+        status: 200
+        file: kymeta-access-jwks.json
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://academy.kymeta.io
+    operator: vendor
+    operator_note: Absorb LMS tenant on a Kymeta hostname; scopes are absorb:learner / absorb:admin.
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: kymeta-academy-openid-configuration.json
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        file: kymeta-academy-oauth-authorization-server.json
+      - path: /.well-known/jwks
+        status: 200
+        file: kymeta-academy-jwks.json
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://api.kymeta.io
+    operator: kymeta
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://www.kymetacorp.com
+    operator: kymeta
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://portal.kymeta.io
+    operator: kymeta
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+soft_404_control:
+  host: https://app.kymeta.io
+  finding: >-
+    app.kymeta.io answers HTTP 200 with the same 8,062-byte HTML shell for EVERY /.well-known/*
+    path probed, including /.well-known/agent-card.json, /openapi.json and /robots.txt. This is a
+    single-page-app catch-all, not a served discovery surface. No document was recorded from this
+    host and it contributes nothing to the WellKnown pointer.
+  probes:
+    - {path: /.well-known/agent-card.json, status: 200, bytes: 8062, content_type: text/html}
+    - {path: /.well-known/openid-configuration, status: 200, bytes: 8062, content_type: text/html}
+    - {path: /robots.txt, status: 200, bytes: 8062, content_type: text/html}

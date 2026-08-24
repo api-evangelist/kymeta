@@ -1,0 +1,45 @@
+generated: '2026-08-23'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.kymetacorp.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 13 07:55:43 2026 GMT
+  hsts: true
+  hsts_max_age: 2592000
+- host: api.kymeta.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov  4 16:58:49 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+  hsts_note: >-
+    probe-domain-security.py recorded hsts null for this host; a re-probe of both HEAD /
+    and GET /health returned "strict-transport-security: max-age=31536000; includeSubDomains",
+    so the corrected observed value is recorded here.
+- host: access.kymeta.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov  4 16:58:49 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: kymetacorp.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: kymeta.io
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+notes:
+  - No CAA record on either kymetacorp.com or kymeta.io, so certificate issuance is not pinned to
+    a named CA.
+  - No DNSSEC on either registrable domain.
+  - DMARC is published on both domains at p=quarantine rather than p=reject.

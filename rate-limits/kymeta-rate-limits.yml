@@ -1,0 +1,19 @@
+generated: '2026-08-23'
+method: probed
+source: response headers from https://api.kymeta.io/status and https://api.kymeta.io/version
+limit_count: 0
+documented: false
+note: >-
+  No rate limits are documented — Kymeta publishes no API reference at all — and none were
+  observed at runtime. Repeated unauthenticated requests to /health, /version and /status returned
+  no X-RateLimit-*, no RateLimit-* (RFC 9331 draft) and no Retry-After header, and no 429 was
+  seen. This is an honest zero on both counts, not an unchecked field: an integrator has no
+  published quota and no runtime signal to back off against.
+rate_limits: []
+headers_observed: []
+headers_checked: [X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, RateLimit, RateLimit-Policy, Retry-After]
+exhaustion_status: null
+x-evidence:
+  - {url: 'https://api.kymeta.io/version', http_status: 200, rate_limit_headers: none}
+  - {url: 'https://api.kymeta.io/status', http_status: 200, rate_limit_headers: none}
+  - {url: 'https://api.kymeta.io/health', http_status: 200, rate_limit_headers: none}

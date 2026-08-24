@@ -1,23 +1,141 @@
 aid: kymeta
 name: Kymeta
-description: 'Kymeta is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Kymeta Corporation is a Redmond, Washington satellite communications company that builds
+  electronically steered, flat-panel metamaterial antennas and the connectivity service that runs
+  behind them. Spun out of Intellectual Ventures in 2012 from metamaterials research begun at Duke
+  University, Kymeta ships the u8 terminal family — Osprey u8, Goshawk u8, Peregrine u8, Hawk u8
+  and the compact Kestrel u5 — for military and government, maritime, land-mobile, energy and
+  humanitarian users who need multi-orbit GEO/LEO connectivity on the move. The hardware is paired
+  with Kymeta Connect, a software-defined service platform reached through the Kymeta Access app
+  and the Kymeta Access Portal, which handles terminal management, subscriptions, usage metrics and
+  remote monitoring. Kymeta operates a first-party API host and its own OAuth 2.0 / OpenID Connect
+  identity provider, but publishes no public developer program, API reference or machine-readable
+  contract; product documentation and release notices require a Kymeta Access Portal account.
+image: https://www.kymetacorp.com/dist/img/meta/logo-mark.svg
 url: https://raw.githubusercontent.com/api-evangelist/kymeta/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-23'
 modified: '2026-08-23'
 tags:
-- Company
-apis: []
+- Satellite
+- Satellite Communications
+- Connectivity
+- Telecommunications
+- Networking
+- Antennas
+- Metamaterials
+- Aerospace and Defense
+- Maritime
+- Remote Monitoring
+- Hardware
+apis:
+- name: Kymeta Connect Platform API
+  description: >-
+    Kymeta's first-party API host for the Kymeta Connect service platform, which backs the Kymeta
+    Access app and the Kymeta Access Portal. The host answers unauthenticated on three operational
+    endpoints only — /health, /version and /status — and 404s every specification path probed. Its
+    own /status roll-up names the ten services behind the gateway: accounts, activityLogger,
+    enterpriseBroker, fileStorage, logicApp, remoteMetrics, scheduler, subscriptions, users and
+    devices. Every functional endpoint is gated behind the OAuth 2.0 server at access.kymeta.io;
+    Kymeta publishes no OpenAPI, no reference and no getting-started guide for it.
+  humanURL: https://www.kymetacorp.com/support/app
+  baseURL: https://api.kymeta.io
+  tags:
+  - Satellite Communications
+  - Connectivity
+  - Remote Monitoring
+  properties:
+  - type: Authentication
+    url: authentication/kymeta-authentication.yml
+  - type: OAuthScopes
+    url: scopes/kymeta-scopes.yml
+- name: Kymeta Access Identity
+  description: >-
+    Kymeta's own OAuth 2.0 / OpenID Connect authorization server (issuer https://access.kymeta.io),
+    the single sign-on point for the Kymeta Access Portal, Kymeta Academy and Grapevine. It
+    publishes a live OIDC discovery document and JWKS, supports authorization code with PKCE,
+    client credentials, refresh token, implicit and device code grants, and advertises eleven
+    scopes including a named partners-api scope. The discovery document is the only
+    machine-readable contract Kymeta publishes anywhere.
+  humanURL: https://access.kymeta.io/
+  baseURL: https://access.kymeta.io
+  tags:
+  - Authentication
+  - OpenID Connect
+  - OAuth
+  properties:
+  - type: OpenIDConnect
+    url: https://access.kymeta.io/.well-known/openid-configuration
+  - type: Authentication
+    url: authentication/kymeta-authentication.yml
+  - type: OAuthScopes
+    url: scopes/kymeta-scopes.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/kymeta-domain-security.yml
 - type: Website
-  url: https://forgeglobal.com/kymeta_stock/
+  url: https://www.kymetacorp.com/
+- type: Documentation
+  url: https://www.kymetacorp.com/support/resources
+- type: Support
+  url: https://www.kymetacorp.com/support
+- type: Blog
+  url: https://www.kymetacorp.com/about/news-insights
+- type: TermsOfService
+  url: https://www.kymetacorp.com/legal?q=terms-of-use
+- type: PrivacyPolicy
+  url: https://www.kymetacorp.com/legal?q=privacy-policy
+- type: Login
+  url: https://access.kymeta.io/
+- type: Training
+  url: https://www.kymetacorp.com/support/training
+- type: WellKnown
+  url: well-known/kymeta-well-known.yml
+- type: Authentication
+  url: authentication/kymeta-authentication.yml
+- type: OAuthScopes
+  url: scopes/kymeta-scopes.yml
+- type: Conformance
+  url: conformance/kymeta-conformance.yml
+- type: LLMsTxt
+  url: llms/kymeta-llms.txt
+- type: Lifecycle
+  url: lifecycle/kymeta-lifecycle.yml
+- type: Conventions
+  url: conventions/kymeta-conventions.yml
+- type: Plans
+  url: plans/kymeta-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/kymeta-rate-limits.yml
+x-enrichment:
+  date: '2026-08-23'
+  status: enriched
+  artifacts_added: 17
+  pass: local-v1
+x-coverage:
+  state: gated
+  reason: customer-only-docs
+  detail: >-
+    Kymeta runs a live first-party API host at api.kymeta.io that answers /health, /version and
+    /status unauthenticated and 404s every specification path, while its own support site states
+    "You must have a Kymeta Access Portal account to access the notices" — so the contract,
+    reference and release notes for the Kymeta Connect platform all sit behind a customer tenant
+    rather than being unpublished.
+  evidence:
+    - url: https://api.kymeta.io/status
+      status: 200
+    - url: https://api.kymeta.io/openapi.json
+      status: 404
+    - url: https://www.kymetacorp.com/support/product-and-software-updates
+      status: 200
+    - url: https://access.kymeta.io/.well-known/openid-configuration
+      status: 200
+  checked: '2026-08-23'

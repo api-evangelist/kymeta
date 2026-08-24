@@ -1,0 +1,70 @@
+generated: '2026-08-23'
+method: probed
+source: https://access.kymeta.io/.well-known/openid-configuration
+note: >-
+  Derived entirely from documents Kymeta itself serves. Kymeta publishes no OpenAPI, so this
+  profile is built from the live OpenID Connect discovery document at its own identity provider
+  rather than from securitySchemes. derive-authentication.py was not run because there is no
+  spec in openapi/ for it to read.
+summary:
+  types: [oauth2, openIdConnect]
+  api_key_in: []
+  oauth2_flows: [authorizationCode, clientCredentials, implicit, deviceCode, refreshToken]
+  machine_to_machine: true
+  machine_to_machine_evidence: >-
+    client_credentials is listed in grant_types_supported, so Kymeta issues non-interactive
+    tokens — the prerequisite for any partner or agent integration against api.kymeta.io.
+schemes:
+  - name: KymetaAccessOIDC
+    type: openIdConnect
+    openIdConnectUrl: https://access.kymeta.io/.well-known/openid-configuration
+    issuer: https://access.kymeta.io
+    operator: kymeta
+    sources: [well-known/kymeta-access-openid-configuration.json]
+    endpoints:
+      authorization: https://access.kymeta.io/connect/authorize
+      token: https://access.kymeta.io/connect/token
+      userinfo: https://access.kymeta.io/connect/userinfo
+      introspection: https://access.kymeta.io/connect/introspect
+      revocation: https://access.kymeta.io/connect/revocation
+      device_authorization: https://access.kymeta.io/connect/deviceauthorization
+      end_session: https://access.kymeta.io/connect/endsession
+      jwks: https://access.kymeta.io/.well-known/openid-configuration/jwks
+    grant_types: [authorization_code, client_credentials, refresh_token, implicit, 'urn:ietf:params:oauth:grant-type:device_code']
+    response_types: [code, token, id_token, 'id_token token', 'code id_token', 'code token', 'code id_token token']
+    token_endpoint_auth_methods: [client_secret_basic, client_secret_post]
+    id_token_signing_alg: [RS256]
+    pkce_methods: [plain, S256]
+    scope_count: 11
+    scopes_ref: scopes/kymeta-scopes.yml
+    dynamic_client_registration: false
+  - name: KymetaAcademyOIDC
+    type: openIdConnect
+    openIdConnectUrl: https://academy.kymeta.io/.well-known/openid-configuration
+    issuer: https://academy.kymeta.io/
+    operator: vendor
+    operator_note: >-
+      Absorb LMS running on a Kymeta hostname. Endpoints are /api/v6/idam/oauth/*, scopes are
+      absorb:learner and absorb:admin. Recorded because Kymeta's domain serves it, not because
+      the API is Kymeta's.
+    sources: [well-known/kymeta-academy-openid-configuration.json]
+    endpoints:
+      authorization: https://academy.kymeta.io/api/v6/idam/oauth/authorize
+      token: https://academy.kymeta.io/api/v6/idam/oauth/token
+      userinfo: https://academy.kymeta.io/api/v6/idam/oauth/userinfo
+      revocation: https://academy.kymeta.io/api/v6/idam/oauth/token/revoke
+      registration: https://academy.kymeta.io/api/v6/idam/oauth/clients/register
+      jwks: https://academy.kymeta.io/.well-known/jwks
+    grant_types: [authorization_code, refresh_token]
+    token_endpoint_auth_methods: [client_secret_post, private_key_jwt, client_secret_basic]
+    id_token_signing_alg: [RS256]
+    pkce_methods: [S256]
+    dynamic_client_registration: true
+gaps:
+  - >-
+    No public authentication guide. Kymeta documents no getting-started, key-issuance or token
+    flow anywhere a member of the public can reach; the discovery document is the only published
+    description of how to authenticate.
+  - >-
+    api.kymeta.io serves no /.well-known/oauth-protected-resource, so an agent cannot discover
+    from the resource server which authorization server protects it (RFC 9728).

@@ -1,0 +1,21 @@
+generated: '2026-08-23'
+method: searched
+source: https://www.kymetacorp.com/connectivity
+plan_count: 0
+public_pricing: false
+note: >-
+  Kymeta publishes no pricing or plan page. https://www.kymetacorp.com/pricing returns HTTP 404,
+  and no price, tier, quota or overage figure appears anywhere on the connectivity, products or
+  GEO services pages. The company sells hardware terminals plus a Kymeta Connect airtime
+  subscription through a contact-sales and reseller motion; the connectivity pages describe
+  "plans" qualitatively (GEO, multi-orbit, U.S. DoD bundle) without naming a single published
+  price. There is likewise no free tier, trial or self-serve signup — access.kymeta.io is a
+  customer sign-in, not a registration flow.
+plans: []
+sales_motion: contact-sales
+contact: https://www.kymetacorp.com/contact
+x-evidence:
+  - {url: 'https://www.kymetacorp.com/pricing', http_status: 404}
+  - {url: 'https://www.kymetacorp.com/connectivity', http_status: 200}
+  - {url: 'https://www.kymetacorp.com/connectivity/geo', http_status: 200}
+  - {url: 'https://www.kymetacorp.com/contact', http_status: 200}

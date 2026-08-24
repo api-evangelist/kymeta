@@ -64,5 +64,16 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Kymeta is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/kymeta_stock/
+Kymeta Corporation is a Redmond, Washington satellite communications company that builds
+electronically steered, flat-panel metamaterial antennas — the u8 terminal family (Osprey, Goshawk,
+Peregrine, Hawk) and the compact Kestrel u5 — together with Kymeta Connect, the software-defined
+service platform behind them, for military and government, maritime, land-mobile, energy and
+humanitarian users needing multi-orbit GEO/LEO connectivity on the move.
+
+Kymeta operates a first-party API host and its own OAuth 2.0 / OpenID Connect identity provider,
+but publishes no public developer program, API reference or machine-readable API contract. See
+`apis.yml` `x-coverage` for the evidence.
+
+- https://www.kymetacorp.com/
+- https://www.kymetacorp.com/support
+- https://access.kymeta.io/

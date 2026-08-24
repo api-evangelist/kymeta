@@ -1,0 +1,103 @@
+generated: '2026-08-23'
+method: probed
+source: live response headers from https://api.kymeta.io
+note: >-
+  Kymeta publishes no API reference, so almost nothing about its request/response semantics is
+  documented. The fields below record only what was directly observed on the three unauthenticated
+  endpoints api.kymeta.io serves, plus what its OpenID Connect discovery document states. Every
+  other field is null with a reason. Nothing here is inferred from a comparable API.
+authentication:
+  style: oauth2-bearer
+  authorization_server: https://access.kymeta.io
+  evidence: >-
+    api.kymeta.io advertises Authorization in access-control-allow-headers, and access.kymeta.io
+    publishes a full OIDC discovery document. See authentication/kymeta-authentication.yml.
+cors:
+  enabled: true
+  allow_origin: '*'
+  allow_credentials: true
+  allow_methods: [GET, PUT, POST, DELETE, PATCH, OPTIONS]
+  allow_headers: [DNT, Keep-Alive, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control, Content-Type, Range, Authorization]
+  max_age: 1728000
+  evidence: 'observed on every response from https://api.kymeta.io, including 404s'
+  note: >-
+    The advertised method set (PUT, POST, DELETE, PATCH) confirms a write surface exists behind
+    the gate, even though none of it is publicly documented.
+content_type:
+  request: unknown
+  response: application/json
+  response_evidence: '/version and /status both return content-type: application/json'
+  casing: PascalCase
+  casing_evidence: >-
+    The /version payload uses {"Version":..., "FileVersion":...}; the /status payload uses
+    ASP.NET tuple serialization ("Item1"/"Item2") with a JSON string nested inside Item2 rather
+    than a nested object. Both are .NET framework defaults rather than a designed envelope.
+idempotency:
+  supported: unknown
+  reason: >-
+    No idempotency key header, parameter or policy is documented anywhere public, and no write
+    endpoint is reachable to observe one. NOT asserted either way — and no Idempotency pointer is
+    emitted, because that pointer would claim a contract Kymeta has not published.
+pagination:
+  style: null
+  reason: No collection endpoint is publicly reachable or documented.
+field_expansion:
+  supported: null
+  reason: undocumented
+metadata:
+  supported: null
+  reason: undocumented
+request_tracing:
+  request_id_header: null
+  observed_headers: [x-response-time]
+  note: >-
+    api.kymeta.io returns x-response-time on every response (value 0 on the probed endpoints). No
+    correlation or request-id header was observed, so a client has no published handle for support.
+versioning:
+  style: none-observed
+  detail: See lifecycle/kymeta-lifecycle.yml — build number only, no consumer-facing API version.
+error_envelope:
+  shape: null
+  rfc9457: false
+  reason: >-
+    Unreachable endpoints return HTTP 404 with content-length 0 and no body at all — not a problem
+    document, not a JSON error, nothing. An agent receives no machine-readable reason for a
+    failure.
+rate_limit_signaling:
+  headers_observed: []
+  detail: See rate-limits/kymeta-rate-limits.yml — no rate-limit headers were returned.
+reversibility:
+  grade: na
+  applicable: false
+  reason: >-
+    Not applicable to what is publicly reachable. The three unauthenticated endpoints
+    (/health, /version, /status) are read-only, so there is no action to reverse. A write surface
+    demonstrably exists behind the gate — api.kymeta.io advertises PUT, POST, DELETE and PATCH in
+    its CORS policy, and the platform runs subscriptions, devices, users, accounts, scheduler and
+    fileStorage services — but Kymeta documents no operation, no reversal path and no window for
+    any of it, so nothing can be graded. NO reversal window is asserted here: inventing one for a
+    subscription or device-provisioning API could cost a user real money or real connectivity.
+  write_surfaces: []
+  reversal_operations: []
+dry_run_mode:
+  supported: na
+  reason: No public write surface and no sandbox; see sandbox note in plans/kymeta-plans-pricing.yml.
+agent_access:
+  robots_txt: https://www.kymetacorp.com/robots.txt
+  ai_crawlers_disallowed: [GPTBot, Google-Extended, PerplexityBot]
+  disallow_scope: '/'
+  general_crawlers_allowed: true
+  general_disallow_paths: [/cpresources/, /vendor/, /.env, /cache/]
+  evidence: >-
+    robots.txt names each AI crawler with "Disallow: /" and an inline comment that reads
+    "there's no benefit to allowing it to index your site". Ordinary crawlers are allowed
+    everywhere except four infrastructure paths, so this is a deliberate agent-specific policy
+    rather than a blanket block. Recorded as an observed stance, not a defect.
+  sitemap: https://www.kymetacorp.com/sitemaps-1-sitemap.xml
+
+cross_links:
+  authentication: authentication/kymeta-authentication.yml
+  scopes: scopes/kymeta-scopes.yml
+  lifecycle: lifecycle/kymeta-lifecycle.yml
+  rate_limits: rate-limits/kymeta-rate-limits.yml
+  conformance: conformance/kymeta-conformance.yml
