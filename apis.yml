@@ -12,6 +12,17 @@ description: >-
   remote monitoring. Kymeta operates a first-party API host and its own OAuth 2.0 / OpenID Connect
   identity provider, but publishes no public developer program, API reference or machine-readable
   contract; product documentation and release notices require a Kymeta Access Portal account.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://www.kymetacorp.com/dist/img/meta/logo-mark.svg
 url: https://raw.githubusercontent.com/api-evangelist/kymeta/refs/heads/main/apis.yml
 x-type: company
