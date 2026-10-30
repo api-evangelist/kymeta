@@ -64,16 +64,108 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Kymeta Corporation is a Redmond, Washington satellite communications company that builds
-electronically steered, flat-panel metamaterial antennas — the u8 terminal family (Osprey, Goshawk,
-Peregrine, Hawk) and the compact Kestrel u5 — together with Kymeta Connect, the software-defined
-service platform behind them, for military and government, maritime, land-mobile, energy and
-humanitarian users needing multi-orbit GEO/LEO connectivity on the move.
+Kymeta Corporation is a Redmond, Washington satellite communications company that builds electronically steered, flat-panel metamaterial antennas and the connectivity service that runs behind them. Spun out of Intellectual Ventures in 2012 from metamaterials research begun at Duke University, Kymeta ships the u8 terminal family — Osprey u8, Goshawk u8, Peregrine u8, Hawk u8 and the compact Kestrel u5 — for military and government, maritime, land-mobile, energy and humanitarian users who need multi-orbit GEO/LEO connectivity on the move. The hardware is paired with Kymeta Connect, a software-defined service platform reached through the Kymeta Access app and the Kymeta Access Portal, which handles terminal management, subscriptions, usage metrics and remote monitoring. Kymeta operates a first-party API host and its own OAuth 2.0 / OpenID Connect identity provider, but publishes no public developer program, API reference or machine-readable contract; product documentation and release notices require a Kymeta Access Portal account.
 
-Kymeta operates a first-party API host and its own OAuth 2.0 / OpenID Connect identity provider,
-but publishes no public developer program, API reference or machine-readable API contract. See
-`apis.yml` `x-coverage` for the evidence.
+**Areas:** Satellite · Satellite Communications · Connectivity · Telecommunications · Networking · Antennas · Metamaterials · Aerospace and Defense · Maritime · Remote Monitoring · Hardware
 
-- https://www.kymetacorp.com/
-- https://www.kymetacorp.com/support
-- https://access.kymeta.io/
+## Kymeta on APIs.io
+
+Everything profiled for Kymeta is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/kymeta/](https://apis.io/providers/kymeta/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [Kymeta Connect Platform API](https://apis.io/apis/kymeta/kymeta-connect-platform-api/) — Kymeta's first-party API host for the Kymeta Connect service platform, which backs the Kymeta Access app and the Kymeta Access Portal. The host answers…
+- [Kymeta Access Identity](https://apis.io/apis/kymeta/kymeta-access-identity/) — Kymeta's own OAuth 2.0 / OpenID Connect authorization server (issuer https://access.kymeta.io), the single sign-on point for the Kymeta Access Portal,…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Kymeta Authentication](https://apis.io/security/kymeta/kymeta-authentication/)
+- [Kymeta Domain Security](https://apis.io/security/kymeta/kymeta-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Kymeta Scopes](https://apis.io/scopes/kymeta/kymeta-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Kymeta Plans Pricing](https://apis.io/plans/kymeta/kymeta-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Kymeta Rate Limits](https://apis.io/rate-limits/kymeta/kymeta-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.kymetacorp.com/)
+- [Documentation](https://www.kymetacorp.com/support/resources)
+- [Support](https://www.kymetacorp.com/support)
+- [Blog](https://www.kymetacorp.com/about/news-insights)
+- [Terms of service](https://www.kymetacorp.com/legal?q=terms-of-use)
+- [Privacy policy](https://www.kymetacorp.com/legal?q=privacy-policy)
+
+## API Evangelist rating
+
+**Kin Score 22.2** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 27.6 |
+
+**Agent readiness 13.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 35.0** — Telecommunications
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/kymeta/](https://apis.io/providers/kymeta/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Kymeta: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/kymeta/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
